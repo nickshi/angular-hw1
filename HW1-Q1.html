@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Page Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="root-container">
+        <div class="header">
+            <button id="reverse"> 
+                REVERSE
+            </button>
+            <button id="remove-symbols-numbers"> 
+                REMOVE SYMBOLS & NUMBERS
+            </button>
+            <button id="sort-alphabetically"> 
+                SORT ALPHABETICALLLY
+            </button>
+            <button id="toggle-color"> 
+                TOGGLE COLOR
+            </button>
+            <button id="random-color"> 
+                RANDOM COLOR
+            </button>
+            <button id="convert-to-inline">
+                CONVERT TO INLINE
+            </button>
+        </div>
+        <div class="main">
+            <div class="startups-container">
+
+            </div>
+
+        </div>
+        <div class="footer">
+
+        </div>
+
+    </div>
+</body>
+
+</html>
+
+<style>
+    .root-container {
+        position: relative;
+    }
+
+    .root-container .header {
+        position: relative;
+    }
+
+    .root-container .main {
+        position: relative;
+    }
+
+    .root-container .footer {
+        position: relative;
+    }
+
+    .startups-container {
+        background-color: gray;
+    }
+
+    .startups-toggle {
+        background-color: white;
+    }
+
+    .red {
+        background-color: red;
+    }
+
+    .blue {
+        background-color: blue;
+    }
+
+    .gold {
+        background-color: gold;
+    }
+</style>
+
+<script>
+    var colors = ['red', 'blue', 'gold'];
+    var chicagoStartupsHTML = [];
+    var chicagoStartups = [
+        '  Interior   Define  ',
+        'Classkick',
+        'teaBOT  .$',
+        'Pritzker Group Venture Capital',
+        'Teln!yx !!',
+        'ShipBob ~~$$$',
+        'Hologram',
+        'Tovala    ',
+        '    MANOR',
+        'ShuttleCloud 999987',
+        'gtrot @@@@@',
+        'DealsGoRound ****',
+        ' Groovebug',
+        'Stage$$$Bloc',
+        'Shiftgig',
+        'ParkWhiz'
+    ];
+
+    function display(chicagoStartups) {
+        chicagoStartupsHTML = [];
+        chicagoStartups.forEach(function(startup) {
+            chicagoStartupsHTML.push('<div>' + startup + '</div>');
+        });
+        $(".startups-container").html(chicagoStartupsHTML.join(""));
+    };
+
+    $(document).ready(function () {
+        $.each(chicagoStartups, function (index, startupName) {
+            chicagoStartupsHTML.push('<div>' + startupName + '</div>');
+        });
+        $(".startups-container").html(chicagoStartupsHTML.join(""));
+
+        $("#reverse").click(function() {
+            chicagoStartups.reverse();
+            display(chicagoStartups);
+        });
+
+        $("#remove-symbols-numbers").click(function() {
+            var removed = chicagoStartups.map(function(startup) {
+                return startup.replace(/[^a-zA-Z_]/g, "");
+            });
+            display(removed);
+        });
+
+        $("#sort-alphabetically").click(function() {
+            chicagoStartups.sort();
+            display(chicagoStartups);
+        });
+
+        $("#toggle-color").click(function() {
+            $(".startups-container").toggleClass('startups-toggle');
+        });
+
+
+        $("#random-color").click(function() {
+            var colorIndex = Math.floor(Math.random() * 3);
+
+            $(".startups-container").children().removeClass().addClass(colors[colorIndex]);
+        });
+
+        $("#convert-to-inline").click(function() {
+            var inlineStrats = "";
+            $.each(chicagoStartups, function (index, startupName) {
+            inlineStrats += startupName;
+            $(".startups-container").html(inlineStrats);
+        });
+        });
+    });
+
+    //HOMEWORK 1 PROBLEMS START
+    // 1.CREATE A FUNCTION THAT REVERSES THE LIST OF STARTUPS ON CLICK OF THE REVERSE BUTTON
+    // 2.CREATE A FUNCTION THAT REMOVES ALL SYMBOLS AND NUMBERS FROM COMPANY NAMES ON CLICK OF REMOVE SYMBOLS & NUMBERS BUTTON 
+    //   Stage$$$Bloc => StageBloc
+    // 3.CREATE A FUNCTION THAT SORTS STARTUPS IN ALPHABETICAL ORDER ON CLICK OF THE SORT BUTTON
+    // 4.CREATE A FUNCTION THAT TOGGLES THE BACKGROUND COLOR UPON CLICK OF THE TOGGLE COLOR BUTTON
+    // 5.CREATE A FUNCTION THAT RANDOMLY SELECTS A COLOR CLASS AND APPLIES IT TO EACH COMPANY NAME WHEN THE COLOR BUTTON IS CLICKED
+    // 6.CREATE A FUNCTION THAT DISPLAYS STARTS AS INLINE ELEMENTS ON CLICK OF CONVERT TO INLINE BUTTON
+    //HOMEWORK 1 PROBLEMS END
+
+</script>
