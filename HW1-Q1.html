@@ -117,34 +117,36 @@
         });
         $(".startups-container").html(chicagoStartupsHTML.join(""));
 
+        // 1.CREATE A FUNCTION THAT REVERSES THE LIST OF STARTUPS ON CLICK OF THE REVERSE BUTTON
         $("#reverse").click(function() {
             chicagoStartups.reverse();
             display(chicagoStartups);
         });
-
+        // 2.CREATE A FUNCTION THAT REMOVES ALL SYMBOLS AND NUMBERS FROM COMPANY NAMES ON CLICK OF REMOVE SYMBOLS & NUMBERS BUTTON
         $("#remove-symbols-numbers").click(function() {
             var removed = chicagoStartups.map(function(startup) {
                 return startup.replace(/[^a-zA-Z_]/g, "");
             });
             display(removed);
         });
-
+        // 3.CREATE A FUNCTION THAT SORTS STARTUPS IN ALPHABETICAL ORDER ON CLICK OF THE SORT BUTTON
         $("#sort-alphabetically").click(function() {
             chicagoStartups.sort();
             display(chicagoStartups);
         });
 
+        // 4.CREATE A FUNCTION THAT TOGGLES THE BACKGROUND COLOR UPON CLICK OF THE TOGGLE COLOR BUTTON
         $("#toggle-color").click(function() {
             $(".startups-container").toggleClass('startups-toggle');
         });
 
-
+        // 5.CREATE A FUNCTION THAT RANDOMLY SELECTS A COLOR CLASS AND APPLIES IT TO EACH COMPANY NAME WHEN THE COLOR BUTTON IS CLICKED
         $("#random-color").click(function() {
             var colorIndex = Math.floor(Math.random() * 3);
 
             $(".startups-container").children().removeClass().addClass(colors[colorIndex]);
         });
-
+        // 6.CREATE A FUNCTION THAT DISPLAYS STARTS AS INLINE ELEMENTS ON CLICK OF CONVERT TO INLINE BUTTON
         $("#convert-to-inline").click(function() {
             var inlineStrats = "";
             $.each(chicagoStartups, function (index, startupName) {
@@ -154,14 +156,5 @@
         });
     });
 
-    //HOMEWORK 1 PROBLEMS START
-    // 1.CREATE A FUNCTION THAT REVERSES THE LIST OF STARTUPS ON CLICK OF THE REVERSE BUTTON
-    // 2.CREATE A FUNCTION THAT REMOVES ALL SYMBOLS AND NUMBERS FROM COMPANY NAMES ON CLICK OF REMOVE SYMBOLS & NUMBERS BUTTON 
-    //   Stage$$$Bloc => StageBloc
-    // 3.CREATE A FUNCTION THAT SORTS STARTUPS IN ALPHABETICAL ORDER ON CLICK OF THE SORT BUTTON
-    // 4.CREATE A FUNCTION THAT TOGGLES THE BACKGROUND COLOR UPON CLICK OF THE TOGGLE COLOR BUTTON
-    // 5.CREATE A FUNCTION THAT RANDOMLY SELECTS A COLOR CLASS AND APPLIES IT TO EACH COMPANY NAME WHEN THE COLOR BUTTON IS CLICKED
-    // 6.CREATE A FUNCTION THAT DISPLAYS STARTS AS INLINE ELEMENTS ON CLICK OF CONVERT TO INLINE BUTTON
-    //HOMEWORK 1 PROBLEMS END
 
 </script>
